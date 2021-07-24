@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Assignment1DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Date">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Date" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ThingsToDo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="thingToDo" Type="varchar(max)" />
+          <Property Name="dateID" Type="int" />
+          <Property Name="image" Type="varchar" MaxLength="50" />
+          <Property Name="description" Type="text" />
+          <Property Name="mainImage" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_id_date">
+          <End Role="Date" Type="Self.Date" Multiplicity="0..1" />
+          <End Role="ThingsToDo" Type="Self.ThingsToDo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Date">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThingsToDo">
+              <PropertyRef Name="dateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Assignment1DataModelStoreContainer">
+          <EntitySet Name="Date" EntityType="Self.Date" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThingsToDo" EntityType="Self.ThingsToDo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_id_date" Association="Self.FK_id_date">
+            <End Role="Date" EntitySet="Date" />
+            <End Role="ThingsToDo" EntitySet="ThingsToDo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Assignment1DataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Date">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Date1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ThingsToDoes" Relationship="Self.FK_id_date" FromRole="Date" ToRole="ThingsToDo" />
+        </EntityType>
+        <EntityType Name="ThingsToDo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="thingToDo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="dateID" Type="Int32" />
+          <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Date" Relationship="Self.FK_id_date" FromRole="ThingsToDo" ToRole="Date" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="mainImage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_id_date">
+          <End Role="Date" Type="Self.Date" Multiplicity="0..1" />
+          <End Role="ThingsToDo" Type="Self.ThingsToDo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Date">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThingsToDo">
+              <PropertyRef Name="dateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TTDListDataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Dates" EntityType="Self.Date" />
+          <EntitySet Name="ThingsToDoes" EntityType="Self.ThingsToDo" />
+          <AssociationSet Name="FK_id_date" Association="Self.FK_id_date">
+            <End Role="Date" EntitySet="Dates" />
+            <End Role="ThingsToDo" EntitySet="ThingsToDoes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Assignment1DataModelStoreContainer" CdmEntityContainer="TTDListDataEntities">
+          <EntitySetMapping Name="Dates">
+            <EntityTypeMapping TypeName="Assignment1DataModel.Date">
+              <MappingFragment StoreEntitySet="Date">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date1" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThingsToDoes">
+            <EntityTypeMapping TypeName="Assignment1DataModel.ThingsToDo">
+              <MappingFragment StoreEntitySet="ThingsToDo">
+                <ScalarProperty Name="mainImage" ColumnName="mainImage" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="thingToDo" ColumnName="thingToDo" />
+                <ScalarProperty Name="dateID" ColumnName="dateID" />
+                <ScalarProperty Name="image" ColumnName="image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

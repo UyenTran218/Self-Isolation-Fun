@@ -1,0 +1,47 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "MVC Page";
+}
+@model IEnumerable<Assignment1.Models.ThingsToDo>
+
+
+<h2 class="text-center">BEST THINGS TO DO IN QUARANTINE TIME</h2>
+<form method="get" action="/Animals/Index" class="row">
+    <div class="col-4">
+        <input type="text" value="@ViewData["searchText"]" name="searchText" class="form-control" placeholder="Search Activity..." />
+    </div>
+    <div class="col-2">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+</form>
+
+<div class="row">
+    @foreach (Assignment1.Models.ThingsToDo Thing in Model)
+    {
+        <div class="col-md-4 itemContainer">
+            <div class="col-md-10 col-md-offset-1 item">
+                <h4 class="text-center">
+                    @Thing.id
+                </h4>
+                <p class="text-center">
+                    <em>
+                        @Thing.thingToDo on <span>@Thing.Date.Date1</span>
+
+                    </em>
+                    <a href="~/DetailPage.aspx?id=@Thing.id" target="_blank">
+                        <img class="img-thumbnail" style="width:100%" src="@Url.Content(@Thing.image)" alt="@Thing.thingToDo" />
+                    </a>
+
+                </p>
+
+            </div>
+        </div>
+    }
+</div>
+
+
+
+

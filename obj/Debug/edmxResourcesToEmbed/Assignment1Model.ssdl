@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AssignmentDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Date">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ThingsToDo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="thingToDo" Type="varchar(max)" />
+    <Property Name="dateID" Type="int" />
+    <Property Name="image" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_id_date">
+    <End Role="Date" Type="Self.Date" Multiplicity="0..1" />
+    <End Role="ThingsToDo" Type="Self.ThingsToDo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Date">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ThingsToDo">
+        <PropertyRef Name="dateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AssignmentDataModelStoreContainer">
+    <EntitySet Name="Date" EntityType="Self.Date" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ThingsToDo" EntityType="Self.ThingsToDo" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_id_date" Association="Self.FK_id_date">
+      <End Role="Date" EntitySet="Date" />
+      <End Role="ThingsToDo" EntitySet="ThingsToDo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

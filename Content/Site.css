@@ -1,0 +1,100 @@
+﻿.container h2 {
+    padding-top: 25px;
+    margin: 45px;
+    background-color: #ffe9d1;
+    height: 90px;
+}
+
+.card-columns {
+    width: 50px;
+}
+
+body {
+    overflow-y: scroll;
+}
+
+.itemContainer {
+    height: 368px;
+    margin-top: 10px;
+
+    width: -2px;
+}
+
+.item {
+    height: 363px;
+    background-color: #c6d1e7;
+    border-radius: 10px;
+    overflow: hidden;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+footer li {
+    font-size: 20px;
+    display: inline;
+    float: none
+}
+
+footer ul {
+    list-style-type: none;
+}
+
+footer li a {
+    color: white;
+    display: inline-block;
+    padding: 12px;
+    border: 2px solid white;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    margin: 0 9px;
+}
+
+.footer1 {
+    background: #2c3e50;
+    padding-top: 51px;
+    color: white;
+    padding-bottom: 44px;
+    margin-top: 25px;
+}
+
+footer .footer1 ul {
+    display: inline;
+}
+
+footer h3 {
+    font-weight: 700;
+    padding-bottom: 19px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-brand {
+    width: 107px;
+}
+
+.logo {
+    height: 105px;
+}
+
+.nav-link {
+    font-size: 30px;
+}
+
+.navbar {
+    background-color: #C7CEEA;
+}
+
+.col-2 .btn-primary {
+    margin-top: 10px;
+}
+
+.footer2 {
+    margin: 20px;
+}
+.container{
+
+}

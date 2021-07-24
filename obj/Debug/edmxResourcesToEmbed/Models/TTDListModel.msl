@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Assignment1DataModelStoreContainer" CdmEntityContainer="TTDListDataEntities">
+    <EntitySetMapping Name="Dates">
+      <EntityTypeMapping TypeName="Assignment1DataModel.Date">
+        <MappingFragment StoreEntitySet="Date">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date1" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ThingsToDoes">
+      <EntityTypeMapping TypeName="Assignment1DataModel.ThingsToDo">
+        <MappingFragment StoreEntitySet="ThingsToDo">
+          <ScalarProperty Name="mainImage" ColumnName="mainImage" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="thingToDo" ColumnName="thingToDo" />
+          <ScalarProperty Name="dateID" ColumnName="dateID" />
+          <ScalarProperty Name="image" ColumnName="image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
